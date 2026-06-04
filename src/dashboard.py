@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import requests
-from src.skill_counter import detect_skills
 
 # Section 1: Header
 st.header("CS Career Skill Analyzer Dashboard")
@@ -111,24 +110,24 @@ st.header("Live Skill Detector")
 
 job_description = st.text_area("Type your job description:")
 
-# if st.button("Analyze Skills"):
-#     if job_description.strip() == "":
-#         st.warning("Please enter a job description.")
-#     else:
-#         call_detect_skills_api(job_description)
-
 if st.button("Analyze Skills"):
     if job_description.strip() == "":
         st.warning("Please enter a job description.")
     else:
-        skills_detected = detect_skills(job_description)
+        call_detect_skills_api(job_description)
 
-        if len(skills_detected) == 0:
-            st.warning("No technical skills were detected in this text.")
-        else:
-            st.write("Detected skills:")
-            st.write(skills_detected)
-            st.metric("Total Skills Detected", len(skills_detected))
+# if st.button("Analyze Skills"):
+#     if job_description.strip() == "":
+#         st.warning("Please enter a job description.")
+#     else:
+#         skills_detected = detect_skills(job_description)
+
+#         if len(skills_detected) == 0:
+#             st.warning("No technical skills were detected in this text.")
+#         else:
+#             st.write("Detected skills:")
+#             st.write(skills_detected)
+#             st.metric("Total Skills Detected", len(skills_detected))
 
 # Week 7 assignment
 st.subheader("Role Category Summary")
