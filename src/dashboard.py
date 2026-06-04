@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+from src.skill_counter import detect_skills
 
 # Section 1: Header
 st.header("CS Career Skill Analyzer Dashboard")
@@ -72,8 +73,9 @@ st.dataframe(display_jobs_df)
 
 # Week 6 assignment
 # Section 6: Live Skill Detector
+API_URL = st.secrets.get("API_URL", "http://127.0.0.1:8000")
+
 def call_detect_skills_api(job_description):
-    API_URL = "http://127.0.0.1:8000"
 
     try:
         response = requests.post(
@@ -81,7 +83,7 @@ def call_detect_skills_api(job_description):
             json={
                 "description": job_description
             },
-            timeout=5)
+            timeout=15)
 
         if response.status_code == 200:
             data = response.json()
@@ -109,11 +111,24 @@ st.header("Live Skill Detector")
 
 job_description = st.text_area("Type your job description:")
 
+# if st.button("Analyze Skills"):
+#     if job_description.strip() == "":
+#         st.warning("Please enter a job description.")
+#     else:
+#         call_detect_skills_api(job_description)
+
 if st.button("Analyze Skills"):
     if job_description.strip() == "":
         st.warning("Please enter a job description.")
     else:
-        call_detect_skills_api(job_description)
+        skills_detected = detect_skills(job_description)
+
+        if len(skills_detected) == 0:
+            st.warning("No technical skills were detected in this text.")
+        else:
+            st.write("Detected skills:")
+            st.write(skills_detected)
+            st.metric("Total Skills Detected", len(skills_detected))
 
 # Week 7 assignment
 st.subheader("Role Category Summary")
