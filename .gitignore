@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+env/
+.DS_Store
+
+practice_week3/
+practice_week4/
+practice_week5/
+practice_week6/
+practice_week7/
