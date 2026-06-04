@@ -1,6 +1,6 @@
 import csv
 import re
-from src.skill_config import SKILL_ALIASES
+from skill_config import SKILL_ALIASES
 
 def contains_keyword(text, keyword):
     pattern = r"(?<![\w.])" + re.escape(keyword) + r"(?![\w.])"
@@ -8,10 +8,11 @@ def contains_keyword(text, keyword):
 
 def detect_skills(description: str):
     seen = set()
-    description = description.lower()
+    description = description.lower().strip('?!/.')
 
     for canonical_skill, aliases in SKILL_ALIASES.items():
         for alias in aliases:
+
             if contains_keyword(description, alias):
                 seen.add(canonical_skill)
 
@@ -43,7 +44,7 @@ def main():
     skill_count = count_skills_from_csv("output/cleaned_job_posts.csv")
     sorted_skills = sorted(skill_count.items(), key=lambda item: item[1], reverse=True)
     save_skill_counts("output/top_skills.csv", sorted_skills)
-    print(detect_skills("We need C++, JavaScript, React.js and machine learning."))
+    print(detect_skills("We need C++, JavaScript, React.js, Docker and machine learning."))
 
 if __name__ == "__main__":
     main()
