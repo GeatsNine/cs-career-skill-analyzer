@@ -337,3 +337,12 @@ The project can clean job post data, detect technical skills, classify roles, sh
 
 ### Tests Passing
 ![Tests Passing](assets/tests_passed.png)
+
+### Top Skills Chart
+![Top Skills Chart](assets/top_skills_chart.png)
+
+### Live Skill Detector
+![Live Skill Detector](assets/live_skill_detector.png)
+
+### Role Category Summary
+![Role Category Summary](assets/role_category_summary.png)
