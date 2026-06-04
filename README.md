@@ -329,3 +329,11 @@ Possible future improvements:
 Current status: working local version.
 
 The project can clean job post data, detect technical skills, classify roles, show dashboard insights, call the API for live skill detection, and run automated tests.
+
+## Screenshots
+
+### Dashboard Summary
+![Dashboard Summary](assets/dashboard_summary.png)
+
+### Tests Passing
+![Tests Passing](assets/tests_passed.png)
