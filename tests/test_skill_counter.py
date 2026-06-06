@@ -151,3 +151,22 @@ def test_count_skills_from_csv_counts_correctly(tmp_path):
     assert result["node.js"] == 1
     assert result["react"] == 1
     assert "java" not in result
+
+def test_machine_learning_with_period_detected():
+    result = detect_skills("We need machine learning.")
+
+    assert "machine learning" in result
+
+
+def test_nodejs_does_not_trigger_javascript_with_period():
+    result = detect_skills("We need node.js.")
+
+    assert "node.js" in result
+    assert "javascript" not in result
+
+
+def test_reactjs_does_not_trigger_javascript_with_period():
+    result = detect_skills("We need react.js.")
+
+    assert "react" in result
+    assert "javascript" not in result

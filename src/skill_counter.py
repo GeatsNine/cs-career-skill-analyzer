@@ -1,9 +1,15 @@
 import csv
 import re
-from skill_config import SKILL_ALIASES
+from src.skill_config import SKILL_ALIASES
+
+SHORT_ALIASES = ["js", "ts"]
 
 def contains_keyword(text, keyword):
-    pattern = r"(?<![\w.])" + re.escape(keyword) + r"(?![\w.])"
+    if keyword in SHORT_ALIASES:
+        pattern = r"(?<![\w.])" + re.escape(keyword) + r"(?![\w.])"
+    else:
+        pattern = r"(?<!\w)" + re.escape(keyword) + r"(?!\w)"
+
     return re.search(pattern, text) is not None
 
 def detect_skills(description: str):
