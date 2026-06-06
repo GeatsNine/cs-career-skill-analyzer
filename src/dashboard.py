@@ -72,9 +72,9 @@ st.dataframe(display_jobs_df)
 
 # Week 6 assignment
 # Section 6: Live Skill Detector
-# API_URL = st.secrets.get("API_URL", "http://127.0.0.1:8000")
+API_URL = st.secrets.get("API_URL", "http://127.0.0.1:8000")
 
-API_URL = "http://127.0.0.1:8000"
+# API_URL = "http://127.0.0.1:8000"
 
 def call_detect_skills_api(job_description):
 
